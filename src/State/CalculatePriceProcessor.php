@@ -6,7 +6,6 @@ use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
 use App\Entity\Rpc\CalculatePrice;
 use App\Service\CalculatePriceService;
-use App\Service\PaymentProcessor;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class CalculatePriceProcessor implements ProcessorInterface

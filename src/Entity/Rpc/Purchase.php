@@ -9,7 +9,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[Post(uriTemplate: '/purchase', processor: PurchaseProcessor::class)]
 class Purchase extends CalculatePrice
 {
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(normalizer: 'trim')]
+    #[Assert\Choice(choices: ['paypal', 'stripe'])]
     private string $paymentProcessor;
 
     public function getPaymentProcessor(): string

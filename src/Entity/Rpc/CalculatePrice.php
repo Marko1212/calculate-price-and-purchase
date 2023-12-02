@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[Post(uriTemplate: '/calculate-price', processor: CalculatePriceProcessor::class)]
 class CalculatePrice
 {
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(normalizer: 'trim')]
     #[Assert\Type(
         type: 'integer',
         message: 'The value {{ value }} is not a valid {{ type }}.',
@@ -17,10 +17,10 @@ class CalculatePrice
     #[Assert\Positive]
     protected int $product;
 
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(normalizer: 'trim')]
     #[Assert\Regex(
         pattern: '/(DE\d{9}$)|(GR\d{9}$)|(IT\d{11}$)|(FR[A-Z]{2}\d{9}$)/',
-        message: 'The value {{ value }} is not a valid tax number',
+        message: 'The value {{ value }} is not a valid tax number.',
     )]
     protected string $taxNumber;
 

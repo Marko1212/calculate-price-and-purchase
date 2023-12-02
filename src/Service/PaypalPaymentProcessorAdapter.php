@@ -6,7 +6,7 @@ use Systemeio\TestForCandidates\PaymentProcessor\PaypalPaymentProcessor;
 
 class PaypalPaymentProcessorAdapter extends PaymentProcessor
 {
-    public function __construct(private readonly PaypalPayment $paypalPaymentProcessor)
+    public function __construct(private readonly PaypalPaymentProcessor $paypalPaymentProcessor)
     {
     }
 
