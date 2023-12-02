@@ -15,16 +15,16 @@ class CalculatePrice
         message: 'The value {{ value }} is not a valid {{ type }}.',
     )]
     #[Assert\Positive]
-    private int $product;
+    protected int $product;
 
     #[Assert\NotBlank]
     #[Assert\Regex(
         pattern: '/(DE\d{9}$)|(GR\d{9}$)|(IT\d{11}$)|(FR[A-Z]{2}\d{9}$)/',
         message: 'The value {{ value }} is not a valid tax number',
     )]
-    private string $taxNumber;
+    protected string $taxNumber;
 
-    private ?string $couponCode = null;
+    protected ?string $couponCode = null;
 
     public function getProduct(): int
     {

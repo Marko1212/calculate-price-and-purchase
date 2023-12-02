@@ -1,6 +1,6 @@
 <?php
 
-namespace App\PaymentProcessor;
+namespace Systemeio\TestForCandidates\PaymentProcessor;
 
 class StripePaymentProcessor
 {
