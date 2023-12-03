@@ -12,7 +12,7 @@ class PaypalPaymentProcessorAdapter extends PaymentProcessor
 
     public function processPayment(float $price): bool
     {
-        $this->paypalPaymentProcessor->pay($price*100);
+        $this->paypalPaymentProcessor->pay(intval($price*100));
         return true;
     }
 }
