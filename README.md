@@ -1,6 +1,6 @@
 # SYSTEMEIO TEST
 
-## CALCULATE-PRICE END POINT HTTP POST REQUEST EXAMPLES VIA CURL
+## CALCULATE-PRICE END POINT HTTP POST REQUESTS EXAMPLES VIA CURL
 
 ```bash
 curl --location 'http://localhost:8000/api/calculate-price' \
@@ -22,7 +22,7 @@ curl --location 'http://localhost:8000/api/calculate-price' \
 }'
 ```
 
-## PURCHASE END POINT HTTP POST REQUEST EXAMPLE VIA CURL
+## PURCHASE END POINT HTTP POST REQUESTS EXAMPLES VIA CURL
 
 ```bash
 curl --location 'http://localhost:8000/api/purchase' \
@@ -32,5 +32,16 @@ curl --location 'http://localhost:8000/api/purchase' \
     "taxNumber": "GR658565478",
     "couponCode": "F10",
     "paymentProcessor": "paypal"
+}'
+```
+
+```bash
+curl --location 'http://localhost:8000/api/purchase' \
+--header 'Content-Type: application/json' \
+--data '{
+    "product": 1,
+    "taxNumber": "GR658565478",
+    "couponCode": "P6",
+    "paymentProcessor": "stripe"
 }'
 ```
