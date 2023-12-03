@@ -23,6 +23,17 @@ class CalculatePriceService
         if (!$product) {
             throw new NotFoundHttpException('Product with id equal to ' . $data->getProduct() . ' does not exist!');
         }
-        return (Helper::getVAT($data->getTaxNumber()) + 1) * $product->getPrice();
+
+        $couponCode = $data->getCouponCode();
+
+        if (empty($couponCode)) {
+            return (Helper::getVAT($data->getTaxNumber()) + 1) * $product->getPrice();
+        }
+
+        substr($couponCode, 0, 1) === 'F' ?
+            $priceAfterDiscount = $product->getPrice() - substr($data->getCouponCode(), 1) :
+            $priceAfterDiscount = $product->getPrice() * (1 - substr($data->getCouponCode(), 1) / 100);
+
+        return (Helper::getVAT($data->getTaxNumber()) + 1) * $priceAfterDiscount;
     }
 }
