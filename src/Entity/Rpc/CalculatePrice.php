@@ -4,18 +4,20 @@ namespace App\Entity\Rpc;
 
 use ApiPlatform\Metadata\Post;
 use App\State\CalculatePriceProcessor;
+use App\Validator as AppAssert;
 use Symfony\Component\Validator\Constraints as Assert;
 
+#[AppAssert\FixedAmountDiscountLessOrEqualToPrice]
 #[Post(uriTemplate: '/calculate-price', processor: CalculatePriceProcessor::class)]
 class CalculatePrice
 {
     #[Assert\NotBlank(normalizer: 'trim')]
+    #[Assert\Positive]
     #[Assert\Type(
         type: 'integer',
         message: 'The value {{ value }} is not a valid {{ type }}.',
     )]
-    #[Assert\Positive]
-    protected int $product;
+    protected ?int $product = null;
 
     #[Assert\NotBlank(normalizer: 'trim')]
     #[Assert\Regex(
@@ -33,7 +35,7 @@ class CalculatePrice
     )]
     protected ?string $couponCode = null;
 
-    public function getProduct(): int
+    public function getProduct(): ?int
     {
         return $this->product;
     }
