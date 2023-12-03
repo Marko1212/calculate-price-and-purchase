@@ -24,6 +24,13 @@ class CalculatePrice
     )]
     protected string $taxNumber;
 
+    #[Assert\Regex(
+        pattern: '/(^P([1-9][0-9]?|100)$)|(^F[1-9]+[0-9]*$)/',
+        message: 'The value {{ value }} is not a valid promo code.',
+    )]
+    #[Assert\Length(
+        min: 1
+    )]
     protected ?string $couponCode = null;
 
     public function getProduct(): int
