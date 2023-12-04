@@ -31,7 +31,7 @@ class FixedAmountDiscountLessOrEqualToPriceValidator extends ConstraintValidator
             throw new UnexpectedTypeException($value, CalculatePrice::class);
         }
 
-        if (empty($value->getProduct())) {
+        if (empty($value->getProduct()) && $value->getProduct() !== 0) {
             throw new BadRequestHttpException('product value should not be blank');
         }
 
