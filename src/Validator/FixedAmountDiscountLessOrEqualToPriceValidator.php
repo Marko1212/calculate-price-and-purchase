@@ -42,7 +42,9 @@ class FixedAmountDiscountLessOrEqualToPriceValidator extends ConstraintValidator
         }
 
         if ($product->getPrice() < intval(substr($value->getCouponCode(), 1))) {
-            $this->context->buildViolation($constraint->getMessage())->addViolation();
+            $this->context->buildViolation($constraint->getMessage())
+                ->setParameter('{{ value }}', (string)$product->getPrice())
+                ->addViolation();
         }
     }
 }
